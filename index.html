@@ -3,10 +3,22 @@
     <head>
         <title>Introdução JavaScript</title>
         <meta charset="utf-8"/>
-        <script type="text/JavaScript" src="js/main.js"></script>
+        <!--<script type="text/JavaScript" src="js/main.js"></script>-->
 		<script type="text/JavaScript" src="js/aula2.js"></script>
     </head>
-    <body>
+    <body onload="criarCampos()">
         <h1>Index - JavaScript</h1>
+        <br>
+        <button type="button" onclick="btnClick();">Clique aqui</button>
+        <br>
+        <h3 id="resultado"></h3>
+        <br>
+        <button type="button" onclick="redirecionar()">Abrir o YouTube</button>
+        <!-- onmouseover = quando passa o mouse no elemento 
+             onmouseout = quando tira o mouse do elemento
+             Para passar o próprio elemento de parâmetro, usar a keyword 'this'
+        -->
+        <p id="texto1" onmouseover="incluiTexto(this, 'Passei aqui')" onmouseout="tiraTexto(this)">Passe o mouse aqui</p>
+        <p id="texto2" onmouseover="incluiTexto(this, 'Passei aqui também')" onmouseout="tiraTexto(this)">Passe o mouse aqui também</p>    
     </body>
 </hmtl>
