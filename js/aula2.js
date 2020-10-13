@@ -85,19 +85,28 @@ function calcularResultado(elemento)
 {
 	var iptN1 = document.getElementById("iptN1");
 	var iptN2 = document.getElementById("iptN2");
-	var resultado = document.getElementById("resultado");
+	var resultado = document.getElementById("resultado2");
 
-	resultado.innerHTML = "<b>Resultado: " + calcular(iptN1.nodeValue, iptN2.nodeValue, elemento.nodeValue); 
+	if (elemento.value != "@")
+	{
+		//Number() converte um valor para número ou NaN quando não possível converter
+		resultado.innerHTML = "<b>Resultado: " + calcular(Number(iptN1.value), Number(iptN2.value), elemento.value) + "</b>";
+	}
 }
 
-function criarCampos(corpo)
+function criarCampos()
 {
-	corpo.append("<span>N1: </span>");
-	corpo.append("<input type='text' id='iptN1' value='0'></input>");
-	corpo.append("<span>N2: </span>");
-	corpo.append("<input type='text' id='iptN2' value='0'></input>");
-	corpo.append("<span>Escolha operação: </span>");
-	corpo.append("<select onchange='calcularResultado(this)'> " +
+	//document.getElementsByTagName(nome_tag) retorna uma lista de objetos pelo nome da tag html
+	var corpo = document.getElementsByTagName("body")[0];
+	//lastElementChild retorna o último elemento filho do elemento atual
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<span>N1: </span>");
+	//insertAdjacentHTML() injeta um HTML em uma posição definida (beforebegin, afterbegin, beforeend, afterend)
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<input type='text' id='iptN1'></input>");
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<span>N2: </span>");
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<input type='text' id='iptN2'></input>");
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<span>Escolha operação: </span>");
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<select onchange='calcularResultado(this)'> " +
+	    "<option value='@'>-----</option> " +
 		"<option value='+'>Soma</option> " +
 		"<option value='-'>Subtração</option> " +
 		"<option value='*'>Multiplicação</option> " +
@@ -105,5 +114,5 @@ function criarCampos(corpo)
 		"<option value='^'>Potenciação</option> " +
 		"</select>"
 	);
-	corpo.append("<p id='resultado'></p>")
+	corpo.lastElementChild.insertAdjacentHTML("afterend", "<p id='resultado2'></p>")
 }
